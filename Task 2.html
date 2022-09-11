@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Props — Vue.js (vuejs.org)-->
+<title>Task 2 - Coding Props</title>
+</head>
+<body>
+<div id = "app" style="border: 2px solid red; 
+height:100px; width:200px;margin-left:400px;margin-top:50px;">
+    <component1 :person="person"></component1>
+    </div>
+
+    <p style = "margin-left:300px;">Reflection: Components can be parent or child component.<br> 
+        A parent component can pass it's attributes to the child component.<br>
+        Props works like variables, which can pass value to the component. <br>
+        Like a string data, props can also pass object to the components. </p>
+</body>
+</html>
+<script>
+    var component1 = {
+        template: '<div>{{person.firstName}} {{person.lastName}}</div>',
+        props: ['person'],
+    };
+    var app = new Vue({
+        el: '#app',
+        data: {
+            person:{
+                firstName:'Moushumi',
+                lastName:'Ahmed',
+        },
+        fruits:['Mango', 'Kiwi', 'Orange', 'Apple','Banana'],
+        },
+        components: {
+            component1,
+        },
+    });
+</script>

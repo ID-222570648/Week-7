@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- https://v2.vuejs.org/v2/guide/components-custom-events.html)-->
+<title> Task 3 – Custom Events</title>
+</head>
+<body>
+
+<div id="app" style="border: 2px solid red; 
+height:100px; width:200px;margin-left:400px;margin-top:50px;">
+    <component1 @random="random"></component1>
+    <p>random number: {{ count }}</p>
+    </div>
+
+    <p style = "margin-left:300px;">Reflection: Custom events passes from child component 
+        <br>to parent the parent component. In this example, the base or parent component is the app, <br>
+        and the child component is component 1. Component 1 emits custom event, which is called random.<br>
+        The base component 'app' receives return value of the method call by the event random, and the <br>
+        value is transfered and displayed at the base component. 
+        <br>Custom event is a good way to transfer data to the parent componet.
+         </p>
+</body>
+<html>
+
+<script type="text/x-template" id="component1">
+            <div> 
+                <button @click = "random"> random </button>
+            </div>
+</script>
+<script>
+            var component1 = {
+                template: '#component1',
+                methods: {
+                    random: function() {
+                        this.$emit('random', Math.random());
+                    },
+                },
+            };
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    count: 0,
+                },
+                methods: {
+                    random: function (random){
+                        this.count = random;
+                    },
+                },
+                components: {
+                    component1,
+                },
+                });
+</script>
